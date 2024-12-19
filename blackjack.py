@@ -4,7 +4,8 @@ house=[random.choice(taash)]
 u=[random.choice(taash), random.choice(taash)]
 print('House: ',house)
 print('You: ',u)
-while sum(u)<21:
+game=0
+while game==0 and sum(u)<21 and sum(house)<21:
     dec=input('Hit or Stand?\n')
     if dec=='hit':
             print('\n\n\n\n')
@@ -12,14 +13,15 @@ while sum(u)<21:
             print('House: ',house)
             print('You: ',u)
     if dec=='stand':
-            while sum(house)<21 and sum(house)<sum(u) and sum(u)<21:
+            while sum(house)<21 and sum(house)<sum(u):
                 print('\n\n\n\n')
                 house.append(random.choice(taash))
                 print('House: ',house)
                 print('You: ',u)
-if sum(u)>sum(house) and sum(u)<=21 or sum(house)>21:
+                game+=1
+if (game>=0 and sum(u)>sum(house) and sum(u)<=21) or sum(house)>21:
     print('You win!')
-elif sum(u)<sum(house) or sum(u)>21:
+elif (game>=0 and sum(u)<sum(house) and sum(house)<=21) or sum(u)>21:
     print('House wins!')
-elif sum(u)==sum(house):
+elif game>=1 and sum(u)==sum(house):
     print('Push!')
